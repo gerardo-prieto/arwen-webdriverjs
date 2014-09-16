@@ -9,12 +9,10 @@ var argv = require('optimist').demand('env').argv;
 var baseURL = argv.env;
 var platform = argv.platform;
 
-var client = {};
-
 describe('my webdriverjs tests', function(){
     var pages;
     this.timeout(99999999);
-
+    var client = {};
 
     before(function(done){
             client = webdriverjs.remote({ desiredCapabilities: {browserName: 'firefox'} });
