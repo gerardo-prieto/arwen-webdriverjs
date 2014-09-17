@@ -28,7 +28,7 @@ module.exports = function(client, baseURL, platform) {
         .click(add_favorite)
         .isExisting(remove_favorite, function(err, isExisting) {
             expect(isExisting).to.equal(true);
-          });
+        });
   };
 
 

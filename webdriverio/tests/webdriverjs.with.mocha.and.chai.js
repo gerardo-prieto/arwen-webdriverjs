@@ -20,7 +20,7 @@ describe('ARWEN Webdriverjs tests', function(){
             pages = require('../pages')(client, baseURL, platform);
     });
 
-
+/*   */
     it('POST - Anonymous - No price - @wap @html4 @html5',function(done) {
         pages.Home.go();
         pages.Home.goToPostingPage();
@@ -151,6 +151,7 @@ describe('ARWEN Webdriverjs tests', function(){
         pages.Reply.isConfirmationMessageDisplayed();
         client.call(done);  
     });
+
 
     it('ITEM PAGE - Add and Remove to Favorites - @html4 @html5', function(done) {
         pages.Home.go();

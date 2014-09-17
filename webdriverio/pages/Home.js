@@ -6,7 +6,8 @@ var config = require('../config');
 
 module.exports = function(client, baseURL, platform) {
   this.post_button = "[data-qa=post-button]";
-  this.myolx = "[data-qa=my-olx]";
+  this.myolx_logged_in = "[data-qa=my-olx-loggedIn]";
+  this.myolx_logged_out = "[data-qa=my-olx-loggedOut]";
   this.logout_button = "[data-qa=logout-link]";
   this.select_city_link = "[data-qa=select-city]";
   this.change_city_link = "[data-qa=change-city]";
@@ -15,12 +16,12 @@ module.exports = function(client, baseURL, platform) {
   
   this.go = function() {
         client
-            .timeouts('implicit', config.timeout)
-            .url(baseURL + '/?location=www.olx.com.py')
             .deleteCookie()
+            .url(baseURL + '/?location=www.olx.com.py')
             .setCookie({name: 'forcedPlatform', value: platform })
             .setCookie({name: 'showInterstitial', value: '1' })
-            .refresh();
+            .refresh()
+            .timeouts('implicit', config.timeout);
     };
   
 
@@ -31,20 +32,19 @@ module.exports = function(client, baseURL, platform) {
 
   this.goToLoginPage = function() {
      client
-        .click(this.myolx);
+        .click(this.myolx_logged_out);
     };
 
 
   this.logOut = function(){
     client
-        .click(this.myolx)
+        .click(this.myolx_logged_in)
         .waitForVisible(this.logout_button)
         .click(this.logout_button);
     };
 
   this.isUserLoggedOut = function(){
-      var myolx = this.myolx;
-      var user_logged_out = "[href*='/login']";
+      var user_logged_out = this.myolx_logged_out;
       client
           .isExisting(user_logged_out, function(err, isExisting) {
             expect(isExisting).to.equal(true);
@@ -53,11 +53,10 @@ module.exports = function(client, baseURL, platform) {
 
 
   this.isUserLoggedIn = function(username, password) {
-      var myolx = this.myolx;
-      var user_logged_out = "[href*='/login']";
+      var user_logged_in = this.myolx_logged_in;
       client
-          .isExisting(user_logged_out, function(err, isExisting) {
-            expect(isExisting).to.equal(false);
+          .isExisting(user_logged_in, function(err, isExisting) {
+            expect(isExisting).to.equal(true);
       });
   };
 
