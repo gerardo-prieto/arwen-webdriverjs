@@ -2,23 +2,21 @@
 
 var chai = require('chai');
 var expect = chai.expect;
-var webdriver = require('../node_modules/selenium-webdriver');
 var config = require('../config');
 
-module.exports = function(driver, baseURL, platform) {
-    this.ad_link = webdriver.By.css("[data-qa=posted-ad-link]");
+module.exports = function(client, baseURL, platform) {
+    this.ad_link = "[data-qa=posted-ad-link]";
 
   this.openAdLink = function() {
-      driver.findElement(this.ad_link).click();
+      client
+          .click(this.ad_link);
     };
 
   this.isItemDisplayed = function(){
-      var item_page_element = webdriver.By.css("[data-qa=item]");
- //     driver.manage().timeouts().implicitlyWait(0); 
-      driver.isElementPresent(item_page_element)
-          .then(function assert(isPresent) {
-            expect(isPresent).to.equal(true);
+      var item_page_element = "[data-qa=item]"
+      client
+          .isExisting(item_page_element, function(err, isExisting) {
+            expect(isExisting).to.equal(true);
           });
- //     driver.manage().timeouts().implicitlyWait(config.timeout); 
     };
 }

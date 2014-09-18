@@ -2,10 +2,9 @@
 
 var chai = require('chai');
 var expect = chai.expect;
-var webdriver = require('../node_modules/selenium-webdriver');
 var config = require('../config');
 
-module.exports = function(driver, baseURL, platform) {
+module.exports = function(client, baseURL, platform) {
    if (platform != 'wap'){
        this.city_link = "li:nth-child(1) > [data-qa=city-name]"; 
    }
@@ -14,12 +13,14 @@ module.exports = function(driver, baseURL, platform) {
      }  
    this.selectCity = function(number) {
    if(!number){
-      driver.findElement(webdriver.By.css(this.city_link)).click();
+      client
+          .click(this.city_link);
     }
      else {
       var city_link = this.city_link;
       var new_city_link = city_link.replace("1", number);
-      driver.findElement(webdriver.By.css(new_city_link)).click();  
+      client
+          .click(new_city_link);  
     }
   };
 }

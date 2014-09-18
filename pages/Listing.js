@@ -2,10 +2,9 @@
 
 var chai = require('chai');
 var expect = chai.expect;
-var webdriver = require('../node_modules/selenium-webdriver');
 var config = require('../config');
 
-module.exports = function(driver, baseURL, platform) {
+module.exports = function(client, baseURL, platform) {
   if(platform != 'wap'){
     this.item_listing = "li:nth-child(1) > [data-qa=list-item]";
   }
@@ -15,7 +14,8 @@ module.exports = function(driver, baseURL, platform) {
  
  this.openItem = function (number){
     if(!number){
-      driver.findElement(webdriver.By.css(this.item_listing)).click();
+      client
+          .click(this.item_listing);
     }
       else {
         var locator = this.item_listing;
@@ -25,7 +25,8 @@ module.exports = function(driver, baseURL, platform) {
           else{
             var new_locator = locator.replace("2", number+1);
          }
-        driver.findElement(webdriver.By.css(new_locator)).click();  
+        client
+            .click(new_locator);  
     }
   };
 }
