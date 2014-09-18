@@ -69,8 +69,7 @@
     "mocha": "~1.17.1",
     "nock": "~0.27.1",
     "saucelabs": "~0.1.1",
-    "should": "^3.3.2",
-    "optimist": "^0.6.1"
+    "should": "^3.3.2"
   },
   "tags": [
     "web",
