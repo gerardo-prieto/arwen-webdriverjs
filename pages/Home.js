@@ -39,7 +39,7 @@ module.exports = function(client, baseURL, platform) {
   this.logOut = function(){
     client
         .click(this.myolx_logged_in)
-        .waitForVisible(this.logout_button)
+        .waitForExist(this.logout_button)
         .click(this.logout_button);
     };
 

@@ -14,9 +14,8 @@ module.exports = function(client, baseURL, platform) {
   this.confirmation_message = "[data-qa=reply-message-sent]";
 
   this.replyAnAdWith = function(message, name, email, phone){
-    var reply_button = this.reply_button;
     client
-        .click(reply_button)
+        .click(this.reply_button)
         .setValue(this.message_field, message)
         .setValue(this.name_field, name)
         .setValue(this.email_field, email)
@@ -27,8 +26,8 @@ module.exports = function(client, baseURL, platform) {
   this.isConfirmationMessageDisplayed = function(){
     var confirmation_message = this.confirmation_message;
     client
-      .isExisting(confirmation_message, function(err, isExisting) {
-       expect(isExisting).to.equal(true);
-    });
-  };
+        .isExisting(confirmation_message, function(err, isExisting) {
+           expect(isExisting).to.equal(true);
+        });
+   };
 }

@@ -5,16 +5,9 @@ var expect = chai.expect;
 var config = require('../config');
 
 module.exports = function(client, baseURL, platform) {
-  if(platform == 'html4'){
-    this.remove_favorite = "[data-qa=remove-favorite]"; 
-    this.add_favorite = "[data-qa=add-favorite]";
-  }
-    else{
-      this.remove_favorite = "[class*='fav'][class*='remove']"; 
-      this.add_favorite = "[class*='fav'][class*='add']";
-    }
-
-
+  this.remove_favorite = "[data-qa=remove-favorite]"; 
+  this.add_favorite = "[data-qa=add-favorite]";
+  
   this.addItemToFavorites = function(){
     var remove_favorite = this.remove_favorite;
     var add_favorite = this.add_favorite;
@@ -25,7 +18,9 @@ module.exports = function(client, baseURL, platform) {
               .click(remove_favorite);
           }
         })
+        .waitForExist(add_favorite)
         .click(add_favorite)
+        .waitForExist(remove_favorite)
         .isExisting(remove_favorite, function(err, isExisting) {
             expect(isExisting).to.equal(true);
         });
