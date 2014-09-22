@@ -16,8 +16,26 @@ describe('ARWEN Webdriverjs tests', function(){
     var client = {};
 
     before(function(done){
-        client = webdriverjs.remote(config.capabilities[platform]);
-        client.init(done);
+//        client = webdriverjs.remote(config.capabilities[platform]);
+
+        var webdriverjs = require('../index'),
+        client = webdriverjs.remote({
+            desiredCapabilities: {
+                browserName: 'chrome',
+                version: '27',
+                platform: 'XP',
+                tags: ['examples'],
+                name: 'This is an example test'
+            },
+            host: 'ondemand.saucelabs.com',
+            port: 80,
+            user: process.env.SAUCE_USERNAME,
+            key: process.env.SAUCE_ACCESS_KEY,
+            logLevel: 'silent'
+        }).init(done);
+
+
+//        client.init(done);
         pages = require('../pages')(client, baseURL, platform);
     });
 

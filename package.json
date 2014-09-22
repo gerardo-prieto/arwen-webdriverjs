@@ -1,7 +1,7 @@
 {
   "name": "arwen-webdriverjs",
   "version": "0.0.0",
-  "description": "WebdriverIO [![Build Status](https://travis-ci.org/webdriverio/webdriverio.png?branch=master)](https://travis-ci.org/webdriverio/webdriverio) [![Coverage Status](https://coveralls.io/repos/webdriverio/webdriverio/badge.png?branch=master&)](https://coveralls.io/r/webdriverio/webdriverio?branch=master) ===========",
+  "description": "Arwen Acceptance Tests",
   "main": "index.js",
   "directories": {
     "example": "example",
@@ -10,11 +10,11 @@
   "dependencies": {
     "archiver": "^0.6.1",
     "async": "^0.9.0",
+    "chai": "^1.9.1",
     "chainit": "^2.1.1",
     "css-parse": "^1.7.0",
     "css-value": "^0.0.1",
     "deepmerge": "^0.2.7",
-    "chai": "^1.9.1",
     "optimist": "^0.6.1",
     "pragma-singleton": "^1.0.3",
     "request": "^2.44.0",
