@@ -148,7 +148,7 @@ describe('ARWEN Webdriverjs tests', function(){
         pages.Item.isItemDisplayed();
         client.call(done);  
     });
-
+/*
 
     it('ITEM PAGE - Anonymous - Reply an Ad - @wap @html4 @html5', function(done) {
         pages.Home.go();
@@ -171,7 +171,7 @@ describe('ARWEN Webdriverjs tests', function(){
         client.call(done);  
     });
 
-
+*/
     it('ITEM PAGE - Add and Remove to Favorites - @html4 @html5', function(done) {
         pages.Home.go();
         pages.Home.goToLoginPage();
