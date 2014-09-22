@@ -9,15 +9,16 @@ var argv = require('optimist').demand('env').argv;
 var baseURL = argv.env;
 var platform = argv.platform;
 
+
 describe('ARWEN Webdriverjs tests', function(){
 
     this.timeout(99999999);
     var client = {};
 
     before(function(done){
-            client = webdriverjs.remote(config.capabilities[platform]);
-            client.init(done);
-            pages = require('../pages')(client, baseURL, platform);
+        client = webdriverjs.remote(config.capabilities[platform]);
+        client.init(done);
+        pages = require('../pages')(client, baseURL, platform);
     });
 
 /*   */
