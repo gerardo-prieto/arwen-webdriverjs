@@ -16,26 +16,8 @@ describe('ARWEN Webdriverjs tests', function(){
     var client = {};
 
     before(function(done){
-//        client = webdriverjs.remote(config.capabilities[platform]);
-
-        var webdriverjs = require('../index'),
-        client = webdriverjs.remote({
-            desiredCapabilities: {
-                browserName: 'chrome',
-                version: '27',
-                platform: 'XP',
-                tags: ['examples'],
-                name: 'This is an example test'
-            },
-            host: 'ondemand.saucelabs.com',
-            port: 80,
-            user: process.env.SAUCE_USERNAME,
-            key: process.env.SAUCE_ACCESS_KEY,
-            logLevel: 'silent'
-        }).init(done);
-
-
-//        client.init(done);
+        client = webdriverjs.remote(config.capabilities[platform]);
+        client.init(done);
         pages = require('../pages')(client, baseURL, platform);
     });
 
@@ -148,7 +130,7 @@ describe('ARWEN Webdriverjs tests', function(){
         pages.Item.isItemDisplayed();
         client.call(done);  
     });
-/*
+
 
     it('ITEM PAGE - Anonymous - Reply an Ad - @wap @html4 @html5', function(done) {
         pages.Home.go();
@@ -171,7 +153,7 @@ describe('ARWEN Webdriverjs tests', function(){
         client.call(done);  
     });
 
-*/
+
     it('ITEM PAGE - Add and Remove to Favorites - @html4 @html5', function(done) {
         pages.Home.go();
         pages.Home.goToLoginPage();
