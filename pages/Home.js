@@ -18,10 +18,15 @@ module.exports = function(client, baseURL, platform) {
         client
             .deleteCookie()
             .url(baseURL + '/?location=www.olx.com.py')
-            .setCookie({name: 'forcedPlatform', value: platform })
+        //    .setCookie({name: 'forcedPlatform', value: platform })
             .setCookie({name: 'showInterstitial', value: '1' })
+            .setCookie({name: 'x-origin-olx', value: 'testing' })
             .refresh()
             .timeouts('implicit', config.timeout);
+/*          .getText('.env strong', function(err, isExisting) {
+                expect(isExisting).to.contain("TESTING");
+            });
+*/
     };
   
 
@@ -39,7 +44,7 @@ module.exports = function(client, baseURL, platform) {
   this.logOut = function(){
     client
         .click(this.myolx_logged_in)
-        .waitForExist(this.logout_button)
+        .pause(3000)
         .click(this.logout_button);
     };
 

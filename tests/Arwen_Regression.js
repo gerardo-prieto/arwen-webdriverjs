@@ -20,23 +20,49 @@ describe('ARWEN Webdriverjs tests', function(){
         client.init(done);
         pages = require('../pages')(client, baseURL, platform);
     });
+/*
 
-/*   */
+    it('bla bla - @wap @html4 @html5', function(done) {
+        pages.Home.go();
+        client
+           .getText('.env strong', function(err, value) {
+                expect(value).to.contain("TESTING");
+           });
+        client.call(done);
+    });
+
+*/
+
     it('POST - Anonymous - No price - @wap @html4 @html5',function(done) {
         pages.Home.go();
         pages.Home.goToPostingPage();
         pages.Posting.selectCityCategoryAndSubcategory();
-        pages.Posting.postWith("Title for testing", "Description for testing", "" , "Mark tester", "1231231231", "robot_test@olx.com");
+        pages.Posting.postWith({
+            title: "Title for testing",
+            description: "Description for testing",
+            price: "",
+            contactName: "Mark tester",
+            phone: "1231231231",
+            email: "robot_test@olx.com"
+        });
         pages.AfterPosting.openAdLink();
         pages.AfterPosting.isItemDisplayed();
         client.call(done);
     });
 
+
     it('POST - Anonymous - With price - @wap @html4 @html5 ', function(done) {
         pages.Home.go();
         pages.Home.goToPostingPage();
         pages.Posting.selectCityCategoryAndSubcategory(362,378);
-        pages.Posting.postWith("Title for testing","Description for testing", "2000" , "Mark tester", "1231231231", "robotest@olx.com");
+        pages.Posting.postWith({
+            title: "Title for testing",
+            description: "Description for testing",
+            price: "1000",
+            contactName: "Mark tester",
+            phone: "1231231231",
+            email: "robot_test@olx.com"
+        });
         pages.AfterPosting.openAdLink();
         pages.AfterPosting.isItemDisplayed();
         client.call(done);
@@ -49,7 +75,14 @@ describe('ARWEN Webdriverjs tests', function(){
         pages.Login.logInWith('robotest@olx.com', 'robotpass');
         pages.Home.goToPostingPage();
         pages.Posting.selectCityCategoryAndSubcategory();
-        pages.Posting.postWith("Title for testing","Description for testing", "" , "Mark tester", "1231231231", "robot_test@olx.com");
+        pages.Posting.postWith({
+            title: "Title for testing",
+            description: "Description for testing",
+            price: "",
+            contactName: "Mark tester",
+            phone: "1231231231",
+            email: "robot_test@olx.com"
+        });
         pages.AfterPosting.openAdLink();
         pages.AfterPosting.isItemDisplayed();
         client.call(done);
@@ -62,7 +95,14 @@ describe('ARWEN Webdriverjs tests', function(){
         pages.Login.logInWith('robotest@olx.com', 'robotpass');
         pages.Home.goToPostingPage();
         pages.Posting.selectCityCategoryAndSubcategory(362,378);
-        pages.Posting.postWith("Title for testing","Description for testing", "2000" , "Mark tester", "1231231231", "robot_test@olx.com");
+        pages.Posting.postWith({
+            title: "Title for testing",
+            description: "Description for testing",
+            price: "1000",
+            contactName: "Mark tester",
+            phone: "1231231231",
+            email: "robot_test@olx.com"
+        });
         pages.AfterPosting.openAdLink();
         pages.AfterPosting.isItemDisplayed();
         client.call(done);
@@ -163,6 +203,8 @@ describe('ARWEN Webdriverjs tests', function(){
         pages.Item.addItemToFavorites();
         client.call(done);  
     });
+
+
 
     after(function(done) {
         client.end(done);

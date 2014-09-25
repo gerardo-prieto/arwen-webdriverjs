@@ -39,18 +39,18 @@ module.exports = function(client, baseURL, platform) {
 
 
 
-  this.postWith = function(title, description, price , contact_name , phone , email) {
+  this.postWith = function(data) {
     client
-        .setValue(this.title, title)
-        .setValue(this.description, description);
-    if (price){
+        .setValue(this.title, data.title)
+        .setValue(this.description, data.description);
+    if (data.price){
       client
-          .setValue(this.price, price);
+          .setValue(this.price, data.price);
     }
     client
-        .setValue(this.contactName, contact_name)
-        .setValue(this.phone, phone)
-        .setValue(this.email, email)
+        .setValue(this.contactName, data.contactName)
+        .setValue(this.phone, data.phone)
+        .setValue(this.email, data.email)
         .click(this.submitButton);
     };
 
